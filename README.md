@@ -7,7 +7,10 @@ Compress a whole directory (including subdirectories) into a zip file, with opt
 # Installation
 
 ```sh
-$ npm install dir-compressor
+$ npm install dir-compressor -D
+```
+```sh
+$ yarn add dir-compressor --dev
 ```
 
 # Usage
