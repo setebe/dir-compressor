@@ -1,0 +1,37 @@
+{
+  "name": "dir-compressor",
+  "version": "1.0.0",
+  "description": "Npm module to Compress a whole directory (including subdirectories) into a zip file, with options to exclude specific files, or directories.",
+  "license": "MIT",
+  "main": "index.js",
+  "bin": {
+    "dir-compressor": "cli.js"
+  },
+  "files": [
+    "LICENSE",
+    "index.js"
+  ],
+  "keywords": [
+    "zip",
+    "compression",
+    "archive",
+    "archiver",
+    "folder",
+    "directory",
+    "dir"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/obender/dir-compressor.git"
+  },
+  "author": {
+    "name": "Chen Osipov",
+    "email": "eobender@gmail.com",
+    "url": "https://www.joinsafedeal.com"
+  },
+  "bugs": "https://github.com/obender/dir-compressor/issues",
+  "homepage": "https://github.com/obender/dir-compressor",
+  "dependencies": {
+    "archiver": "^5.2.0"
+  }
+}
