@@ -31,7 +31,11 @@ class DirArchiver {
       if (stats.isFile() && !this.excludes.includes(relativePath)) {
         let targetPath = currentPath;
         if (this.flat && level == 1) {
-          targetPath = currentPath.replace(directoryPath, "");
+          let dirs = currentPath.split("/");
+          if (dirs.length > 0) {
+            dirs.shift();
+            targetPath = dirs.join('/');
+          }
         }
         this.archive.file(currentPath, {
           name: `${targetPath}`,
