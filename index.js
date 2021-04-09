@@ -25,15 +25,16 @@ class DirArchiver {
   traverseDirectoryTree(directoryPath, level = 1) {
     const files = fs.readdirSync(directoryPath);
     for (const i in files) {
-      let currentPath = directoryPath + "/" + files[i];
-      if (this.flat && level == 1) {
-        currentPath = files[i];
-      }
+      const currentPath = directoryPath + "/" + files[i];
       const stats = fs.statSync(currentPath);
-      let relativePath = path.relative(process.cwd(), currentPath);
+      const relativePath = path.relative(process.cwd(), currentPath);
       if (stats.isFile() && !this.excludes.includes(relativePath)) {
+        let targetPath = currentPath;
+        if (this.flat && level == 1) {
+          targetPath = currentPath.replace(directoryPath, "");
+        }
         this.archive.file(currentPath, {
-          name: `${relativePath}`,
+          name: `${targetPath}`,
         });
       } else if (stats.isDirectory() && !this.excludes.includes(relativePath)) {
         this.traverseDirectoryTree(currentPath, level++);
