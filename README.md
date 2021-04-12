@@ -44,7 +44,8 @@ Options:
   --src      The path of the folder to archive.
   --dest     The path of the zip file to create.
   --exclude  Specify a list with the names of the files and folders to exclude
-  --flatOff  Include the directory inside the zip, meaning if you specify this the target directory will be inside and not flatted
+  --flatOff  Include the directory inside the zip, meaning append files from a sub-directory, putting its contents at the root of archive
+
 ```
 
 
