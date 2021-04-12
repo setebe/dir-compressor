@@ -30,7 +30,7 @@ class DirArchiver {
       const relativePath = path.relative(process.cwd(), currentPath);
       if (stats.isFile() && !this.excludes.includes(relativePath)) {
         let targetPath = currentPath;
-        if (this.flat && level == 1) {
+        if (this.flat) {
           let dirs = currentPath.split("/");
           if (dirs.length > 0) {
             dirs.shift();

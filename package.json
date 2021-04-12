@@ -1,6 +1,6 @@
 {
   "name": "dir-compressor",
-  "version": "1.0.5",
+  "version": "1.0.7",
   "description": "Npm module to Compress a whole directory (including subdirectories) into a zip file, with options to exclude specific files, or directories.",
   "license": "MIT",
   "main": "index.js",
@@ -32,7 +32,7 @@
   "bugs": "https://github.com/obender/dir-compressor/issues",
   "homepage": "https://github.com/obender/dir-compressor",
   "dependencies": {
-    "archiver": "^5.2.0"
+    "archiver": "^5.3.0"
   },
   "devDependencies": {
     "del": "^6.0.0",
