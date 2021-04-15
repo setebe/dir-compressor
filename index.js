@@ -16,6 +16,12 @@ class DirArchiver {
     this.directoryPath = directoryPath;
     this.zipPath = zipPath;
     this.flat = flat;
+    if (this.flat) {
+      this.zipPathPrefix = directoryPath.replace("./", "").split("/")[0];
+      if (this.zipPathPrefix == ".") {
+        this.zipPathPrefix = "";
+      }
+    }
   }
 
   /**
@@ -28,21 +34,24 @@ class DirArchiver {
       const currentPath = directoryPath + "/" + files[i];
       const stats = fs.statSync(currentPath);
       const relativePath = path.relative(process.cwd(), currentPath);
-      const isExcluded = this.excludes.find((d) => relativePath.includes(d)) === undefined;
+      const isExcluded = this.excludes.includes(directoryPath) || this.excludes.includes(files[i]);
 
       if (stats.isFile() && !isExcluded) {
         let targetPath = currentPath;
         if (this.flat) {
           let dirs = currentPath.replace("./", "").split("/");
-          if (dirs.length > 0) {
-            dirs.shift();
-            targetPath = dirs.join("/");
+          targetPath = targetPath.replace("./", "");
+          if (dirs.length > 1) {
+            targetPath = targetPath.replace(this.zipPathPrefix, "");
           }
         }
         this.archive.file(currentPath, {
           name: `${targetPath}`,
         });
+        // console.log(`Adding File:`)
+        // console.log(`${currentPath}\n${targetPath}`)
       } else if (stats.isDirectory() && !this.excludes.includes(relativePath)) {
+        // console.log(`Adding Directory:${currentPath}`)
         this.traverseDirectoryTree(currentPath);
       }
     }
@@ -91,7 +100,7 @@ class DirArchiver {
     this.traverseDirectoryTree(this.directoryPath);
     this.archive.finalize();
     this.output.on("close", function () {
-      console.log(`Created ${path.resolve(self.zipPath)} of ${self.prettyBytes(self.archive.pointer())}`);
+      console.log(`Created: ${path.resolve(self.zipPath)} of ${self.prettyBytes(self.archive.pointer())}`);
     });
   }
 }
