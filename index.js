@@ -18,8 +18,12 @@ class DirArchiver {
     this.flat = flat;
     if (this.flat) {
       this.zipPathPrefix = directoryPath.replace("./", "").split("/")[0];
+      this.zipPathPrefix2 = directoryPath.replace("./", "").split("/")[1];
       if (this.zipPathPrefix == ".") {
         this.zipPathPrefix = "";
+      }
+      if (this.zipPathPrefix2 == ".") {
+        this.zipPathPrefix2 = "";
       }
     }
   }
@@ -43,7 +47,8 @@ class DirArchiver {
           targetPath = targetPath.replace("./", "");
           if (dirs.length > 1) {
             targetPath = targetPath.replace(this.zipPathPrefix, "");
-          }
+            targetPath = targetPath.replace(this.zipPathPrefix2, "");
+           }
         }
         this.archive.file(currentPath, {
           name: `${targetPath}`,
