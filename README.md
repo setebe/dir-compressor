@@ -30,7 +30,7 @@ const excludes = ['directory_name', 'file.extension'];
  * @param {string} zipPath - The path of the zip file to create.
  * @param {array} excludes - A list with the names of the files and folders to exclude.
 */
-var archive = new Dircompressor('path/to/directory', 'path/to/desination/zipfile.zip', excludes);
+var archive = new Dircompressor('path/to/directory', 'path/to/desination/zipfile.zip', excludes,true);
 
 // Create the zip file.
 archive.createZip();
